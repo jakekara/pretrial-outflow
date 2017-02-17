@@ -229,7 +229,7 @@ slides[22].callback(function(){
 slides[24].selection().html("").append("span")
     .html("That left 3,593 held on bond all the way through disposition and/or sentencing.");
 
-slides[25].callback(function(){
+slides[24].callback(function(){
     color_out(310 - 4);
 });
 
