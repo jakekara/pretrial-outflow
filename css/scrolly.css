@@ -1,0 +1,22 @@
+.scrolly-block {
+    min-height: 300px;
+    position: relative;
+}
+
+.scrolly-container{
+    position: relative;
+    width: 100%;
+    overflow: auto;
+}
+
+
+.scrolly-graph {
+    float: right;
+    width: 50%;
+}
+
+.graph-scroll-fixed{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+}

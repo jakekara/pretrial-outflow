@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
+.scrolly-block {
+    padding: 2em;
+}
+
+.scrolly-block span {
+    font-size: 30px;
+    background-color: rgba(255,255,255,0.9);;
+    line-height: 2em;
+}
