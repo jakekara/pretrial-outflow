@@ -14,7 +14,8 @@ var slides = [];
 var add_slides = function(n){
     if (n < 0) return;
     slides.push(container1.add_block());
-    slides[slides.length - 1].selection().html("Slide " + slides.length);
+    // slides[slides.length - 1].selection().html("Slide " + slides.length);
+    container1.add_block();
     add_slides(n - 1);
 }
 
@@ -45,7 +46,7 @@ var draw = function (){
 	.data(function(){
 	    var ret = [];
 	    for (var i = 0; i < 310; i++){
-		ret.push({"in":true,"in_color":true,"__radius":8});
+		ret.push({"in":true,"in_color":true,"__radius":7});
 	    }
 	    return ret;
 	}())
