@@ -194,8 +194,8 @@ PETRI.dish.prototype.update_forces = function(){
 
     var that = this;
     var x_strength = 0.5;
-    var y_strength = 0.5;
-    // var y_strength = x_strength * this.width() / this.height() 
+    // var y_strength = 0.5;
+    var y_strength = x_strength * this.width() / this.height() 
     this.simulation()
             .force("x",
 	       d3.forceX(function(n) {

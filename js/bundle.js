@@ -200,7 +200,7 @@ slides[17].selection().html("").append("span")
     .html("But that's not the end.");
 
 slides[18].selection().html("").append("span")
-    .html("Defendants held on bond after court go into the a state correctional facility.");
+    .html("Defendants held on bond after court go into a state correctional facility.");
 
 slides[19].selection().html("").append("span")
     .html("On the inside, their cases are reviewed again.");
@@ -436,8 +436,8 @@ PETRI.dish.prototype.update_forces = function(){
 
     var that = this;
     var x_strength = 0.5;
-    var y_strength = 0.5;
-    // var y_strength = x_strength * this.width() / this.height() 
+    // var y_strength = 0.5;
+    var y_strength = x_strength * this.width() / this.height() 
     this.simulation()
             .force("x",
 	       d3.forceX(function(n) {
