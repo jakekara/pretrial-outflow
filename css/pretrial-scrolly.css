@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300');
 
 body {
+    background-color: darkslategray;
     font-family: 'Lato', sans-serif;
     margin: 0px;
     -webkit-font-smoothing: antialiased;
