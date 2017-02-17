@@ -46,7 +46,7 @@ var draw = function (){
 	.data(function(){
 	    var ret = [];
 	    for (var i = 0; i < 310; i++){
-		ret.push({"in":true,"in_color":true,"__radius":7});
+		ret.push({"in":true,"in_color":true,"__radius":5});
 	    }
 	    return ret;
 	}())
