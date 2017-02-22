@@ -82,6 +82,17 @@ var draw = function (){
 
 p = draw();
 
+
+var arrange_rand = function(){
+    p.rearrange(function(){
+	return [window.innerWidth * Math.random(),
+		window.innerHeight * Math.random()];
+    });
+}
+
+
+
+
 var arrange = function(){
 
     p.rearrange(function(n, i){
@@ -121,10 +132,11 @@ var move_out = function(out){
 }
 
 slides[0].selection().html("").append("span")
-    .html("In 2014, police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
+    .html("Police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
 firstblock.callback(function(){
     color_out(0);
     move_out(0);
+    arrange_rand();
 });
 
 slides[1].selection().html("").append("span").html("Most of the time an officer issued a citation or summons, which don't involve detention.");
@@ -135,11 +147,12 @@ slides[1].callback(function(){
 
 slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
 
-slides[2].callback(function(){
+slides[3].selection().html("").append("span").html("The blue dots on the left are the custodial arrests. There were 77,000 of those.");
+
+slides[3].callback(function(){
     move_out(310-77);
 });
 
-slides[3].selection().html("").append("span").html("The red dots on the left are the custodial arrests. There were 77,000 of those.");
 
 
 slides[4].selection().html("").append("span").html("Out of those custodial arrests, defendants were let go on  promises to appear in court in 26,000 cases.");
