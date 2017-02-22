@@ -528,13 +528,13 @@ PETRI.dish.prototype.simulation = function(){
 	    d3.forceManyBody()
 		.strength(function(n){
 		    var radius = that.radius(n);
-		    return radius * -10;})
+		    return radius * -5;})
 	)
 	.force(
 	    "collide",
 	    d3.forceCollide()
 		.strength(0.2)
-		.iterations(20)
+		.iterations(3)
 		.radius(function(n){
 		    var col_radius = that.radius(n) + 1;
 		    return col_radius;
