@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-const d3 = require("d3");
+ d3 = require("d3");
 const petri = require("./petri/petri.js").petri;
 const scrolly = require("./scrolly/scrolly.js");
 
@@ -7,7 +7,7 @@ const scrolly = require("./scrolly/scrolly.js");
 var sr = new scrolly.root(d3.select("#container"));
 var container1 = sr.add_container();
 var firstblock = container1.add_block();
-firstblock.selection().html("");
+firstblock.selection();
 
 var slides = [];
 
@@ -20,7 +20,21 @@ var add_slides = function(n){
     add_slides(n - 1);
 }
 
-add_slides(30);
+add_slides(25);
+
+d3.select("#container").style("opacity",0);
+
+fslides = slides;
+
+var scroll_init = function(){
+    window.scrollTo(0,0);
+    var bbox = slides[0].selection().node().getBoundingClientRect();
+    console.log(bbox);
+    window.scrollTo(0, bbox.top);
+
+    
+}
+scroll_init();
 
 // container1.add_block().selection().html("Here's some more text 3")
 // container1.add_block().selection().html("Here's some more text 4");
@@ -56,13 +70,13 @@ var draw = function (){
 	.height(height)
 	.set_fill(function(d){
 	    if (typeof(d.in_color) == "undefined" || d.in_color == false)
-		return "palegreen";
-	    return "tomato";
+		return "gold";
+	    return "lightskyblue";
 	});
     
     p.responsive();
     
-    p.simulation();
+    p.simulation()
 
     return p;
 };
@@ -78,9 +92,11 @@ var arrange = function(){
 	else if (n.in == true){
 	    return [(window.innerWidth / 3), window.innerHeight / 2];
 	}
-	else if (n.in == null){
+	// else if (n.in == null){
+	else {
 	    return [-1 * window.innerWidth, -1 * window.innerHeight];
 	}
+
     });
 };
 
@@ -106,7 +122,7 @@ var move_out = function(out){
 }
 
 slides[0].selection().html("").append("span")
-    .html("In 2014, police in Connecticut charged people with offenses 310,000 times. Each red dot represents 1,000 cases.");
+    .html("In 2014, police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
 firstblock.callback(function(){
     color_out(0);
     move_out(0);
@@ -118,7 +134,7 @@ slides[1].callback(function(){
     color_out(310-77);
 });
 
-slides[2].selection().html("").append("span").html("Those are the dots that just turned green.");
+slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
 
 slides[2].callback(function(){
     move_out(310-77);
@@ -238,6 +254,9 @@ slides[25].callback(function(){
     move_out(310 - 4);
 });
 
+d3.select("#container").transition().duration(1000).style("opacity",1);
+// setTimeout(scroll_init,2 * 1000);
+// scroll_init();
 
 },{"./petri/petri.js":2,"./scrolly/scrolly.js":3,"d3":4}],2:[function(require,module,exports){
 const d3 = require("d3");
@@ -437,7 +456,7 @@ PETRI.dish.prototype.update_forces = function(){
     var that = this;
     var x_strength = 0.5;
     // var y_strength = 0.5;
-    var y_strength = x_strength * this.width() / this.height() 
+    var y_strength = x_strength * this.width() / this.height();
     this.simulation()
             .force("x",
 	       d3.forceX(function(n) {
@@ -446,7 +465,23 @@ PETRI.dish.prototype.update_forces = function(){
 		       return n.__destination[0];
 		   }
 		   return that.width() / 2;
+		   // return that.width() * Math.random();
+		   // n.__destination = [Math.random() * that.width(),
+		   // 		      Math.random() * that.height()];
+		   // return n.__destination[0];
+		   // return null;
 	       })
+	       // .strength(function(n){
+	       // 	   if (n.hasOwnProperty("__destination")
+	       // 	      && n["__destination"] != null){
+	       // 	       return x_strength;
+	       // 	   }
+	       // 	   if (typeof(n) != "undefined" &&
+	       // 	       n.__strength != null)
+	       // 	       return n.__strength;
+
+	       // 	   return 0;
+	       // }))
 	       .strength(x_strength))
 	.force("y",
 	       d3.forceY(function(n) {
@@ -455,8 +490,24 @@ PETRI.dish.prototype.update_forces = function(){
 		       return n.__destination[1];
 		   }
 		   return that.height() / 2;
+		   // return null;
+
+		   // return that.height() * Math.random();
 	       })
-	       .strength(y_strength))
+	       .strength(x_strength))
+	       // .strength(function(n){
+	       // 	   if (n.hasOwnProperty("__destination")
+	       // 	      && n["__destination"] != null){
+	       // 	       return y_strength;
+	       // 	   }
+
+	       // 	   if (typeof(n) != "undefined" &&
+	       // 	       n.__strength != null)
+
+	       // 	       return n.__strength;
+
+	       // 	   return 0;
+	       // }))
 
 
     return this;

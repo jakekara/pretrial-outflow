@@ -1,4 +1,4 @@
-const d3 = require("d3");
+ d3 = require("d3");
 const petri = require("./petri/petri.js").petri;
 const scrolly = require("./scrolly/scrolly.js");
 
@@ -6,7 +6,7 @@ const scrolly = require("./scrolly/scrolly.js");
 var sr = new scrolly.root(d3.select("#container"));
 var container1 = sr.add_container();
 var firstblock = container1.add_block();
-firstblock.selection().html("");
+firstblock.selection();
 
 var slides = [];
 
@@ -19,7 +19,21 @@ var add_slides = function(n){
     add_slides(n - 1);
 }
 
-add_slides(30);
+add_slides(25);
+
+d3.select("#container").style("opacity",0);
+
+fslides = slides;
+
+var scroll_init = function(){
+    window.scrollTo(0,0);
+    var bbox = slides[0].selection().node().getBoundingClientRect();
+    console.log(bbox);
+    window.scrollTo(0, bbox.top);
+
+    
+}
+scroll_init();
 
 // container1.add_block().selection().html("Here's some more text 3")
 // container1.add_block().selection().html("Here's some more text 4");
@@ -55,13 +69,13 @@ var draw = function (){
 	.height(height)
 	.set_fill(function(d){
 	    if (typeof(d.in_color) == "undefined" || d.in_color == false)
-		return "palegreen";
-	    return "tomato";
+		return "gold";
+	    return "lightskyblue";
 	});
     
     p.responsive();
     
-    p.simulation();
+    p.simulation()
 
     return p;
 };
@@ -77,9 +91,11 @@ var arrange = function(){
 	else if (n.in == true){
 	    return [(window.innerWidth / 3), window.innerHeight / 2];
 	}
-	else if (n.in == null){
+	// else if (n.in == null){
+	else {
 	    return [-1 * window.innerWidth, -1 * window.innerHeight];
 	}
+
     });
 };
 
@@ -105,7 +121,7 @@ var move_out = function(out){
 }
 
 slides[0].selection().html("").append("span")
-    .html("In 2014, police in Connecticut charged people with offenses 310,000 times. Each red dot represents 1,000 cases.");
+    .html("In 2014, police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
 firstblock.callback(function(){
     color_out(0);
     move_out(0);
@@ -117,7 +133,7 @@ slides[1].callback(function(){
     color_out(310-77);
 });
 
-slides[2].selection().html("").append("span").html("Those are the dots that just turned green.");
+slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
 
 slides[2].callback(function(){
     move_out(310-77);
@@ -237,3 +253,6 @@ slides[25].callback(function(){
     move_out(310 - 4);
 });
 
+d3.select("#container").transition().duration(1000).style("opacity",1);
+// setTimeout(scroll_init,2 * 1000);
+// scroll_init();

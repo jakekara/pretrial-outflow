@@ -195,7 +195,7 @@ PETRI.dish.prototype.update_forces = function(){
     var that = this;
     var x_strength = 0.5;
     // var y_strength = 0.5;
-    var y_strength = x_strength * this.width() / this.height() 
+    var y_strength = x_strength * this.width() / this.height();
     this.simulation()
             .force("x",
 	       d3.forceX(function(n) {
@@ -204,7 +204,23 @@ PETRI.dish.prototype.update_forces = function(){
 		       return n.__destination[0];
 		   }
 		   return that.width() / 2;
+		   // return that.width() * Math.random();
+		   // n.__destination = [Math.random() * that.width(),
+		   // 		      Math.random() * that.height()];
+		   // return n.__destination[0];
+		   // return null;
 	       })
+	       // .strength(function(n){
+	       // 	   if (n.hasOwnProperty("__destination")
+	       // 	      && n["__destination"] != null){
+	       // 	       return x_strength;
+	       // 	   }
+	       // 	   if (typeof(n) != "undefined" &&
+	       // 	       n.__strength != null)
+	       // 	       return n.__strength;
+
+	       // 	   return 0;
+	       // }))
 	       .strength(x_strength))
 	.force("y",
 	       d3.forceY(function(n) {
@@ -213,8 +229,24 @@ PETRI.dish.prototype.update_forces = function(){
 		       return n.__destination[1];
 		   }
 		   return that.height() / 2;
+		   // return null;
+
+		   // return that.height() * Math.random();
 	       })
-	       .strength(y_strength))
+	       .strength(x_strength))
+	       // .strength(function(n){
+	       // 	   if (n.hasOwnProperty("__destination")
+	       // 	      && n["__destination"] != null){
+	       // 	       return y_strength;
+	       // 	   }
+
+	       // 	   if (typeof(n) != "undefined" &&
+	       // 	       n.__strength != null)
+
+	       // 	       return n.__strength;
+
+	       // 	   return 0;
+	       // }))
 
 
     return this;
