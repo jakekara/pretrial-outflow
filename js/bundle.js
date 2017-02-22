@@ -26,15 +26,15 @@ d3.select("#container").style("opacity",0);
 
 fslides = slides;
 
-var scroll_init = function(){
-    window.scrollTo(0,0);
-    var bbox = slides[0].selection().node().getBoundingClientRect();
-    console.log(bbox);
-    window.scrollTo(0, bbox.top);
+// var scroll_init = function(){
+//     window.scrollTo(0,0);
+//     var bbox = slides[0].selection().node().getBoundingClientRect();
+//     console.log(bbox);
+//     window.scrollTo(0, bbox.top);
 
     
-}
-scroll_init();
+// }
+// scroll_init();
 
 // container1.add_block().selection().html("Here's some more text 3")
 // container1.add_block().selection().html("Here's some more text 4");
@@ -270,6 +270,8 @@ slides[25].callback(function(){
 d3.select("#container").transition().duration(1000).style("opacity",1);
 // setTimeout(scroll_init,2 * 1000);
 // scroll_init();
+
+window.scrollTo(0,0);
 
 },{"./petri/petri.js":2,"./scrolly/scrolly.js":3,"d3":4}],2:[function(require,module,exports){
 const d3 = require("d3");
