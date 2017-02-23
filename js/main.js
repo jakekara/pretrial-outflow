@@ -50,6 +50,7 @@ container1.gs();
 
 // Add petri
 
+var resp_width = window.innerWidth;
 var draw = function (){
     var cbbox = container1.graph().node().getBoundingClientRect();
     
@@ -79,12 +80,16 @@ var draw = function (){
     
     p.simulation().velocityDecay(0.9);
 
-    d3.select(window).on("resize", function(){
-	p.graph().select("svg")
-	    .attr("width", window.innerWidth + "px")
-	    .attr("height", window.innerHeight + "px");
+    d3.select(window).on("resize." + Math.floor(Math.random() * 1000 * 1000),
+    			 function(){
+			     if (resp_width == window.innerWidth)
+				 return;
+			     
+			     resp_width = window.innerWidth;
+			     
+			     window.scrollTo(0,0);
     });
-    
+
     return p;
 };
 

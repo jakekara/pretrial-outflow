@@ -108,6 +108,7 @@ container.prototype.graph = function(){
     return this.__graph;
 }
 
+
 /**
  * scrolly.container.add_block -- add a new block to the container
  *      returns the block object

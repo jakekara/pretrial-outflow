@@ -51,6 +51,7 @@ container1.gs();
 
 // Add petri
 
+var resp_width = window.innerWidth;
 var draw = function (){
     var cbbox = container1.graph().node().getBoundingClientRect();
     
@@ -80,12 +81,16 @@ var draw = function (){
     
     p.simulation().velocityDecay(0.9);
 
-    d3.select(window).on("resize", function(){
-	p.graph().select("svg")
-	    .attr("width", window.innerWidth + "px")
-	    .attr("height", window.innerHeight + "px");
+    d3.select(window).on("resize." + Math.floor(Math.random() * 1000 * 1000),
+    			 function(){
+			     if (resp_width == window.innerWidth)
+				 return;
+			     
+			     resp_width = window.innerWidth;
+			     
+			     window.scrollTo(0,0);
     });
-    
+
     return p;
 };
 
@@ -444,12 +449,18 @@ PETRI.dish.prototype.width = function(d){
 
 PETRI.dish.prototype.responsive = function(){
     var that = this;
-    d3.select(window).on("resize" + Math.floor(Math.random() * 1000 * 1000),
+    this.responsive_width = window.innerWidth;;
+    d3.select(window).on("resize." + Math.floor(Math.random() * 1000 * 1000),
 			 function(){
+			     if (that.responsive_width == window.innerWidth)
+				 return;
+			     that.responsive_width = window.innerWidth;
+			     
+			     
 	that
 	.width(that.selection().node().getBoundingClientRect().width)
 	// .height(that.selection().node().getBoundingClientRect().height)
-	    .update_forces();
+				 .update_forces().tick();
     });
     return this;
 }
@@ -840,6 +851,7 @@ container.prototype.selection = function(){
 container.prototype.graph = function(){
     return this.__graph;
 }
+
 
 /**
  * scrolly.container.add_block -- add a new block to the container

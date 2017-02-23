@@ -124,12 +124,18 @@ PETRI.dish.prototype.width = function(d){
 
 PETRI.dish.prototype.responsive = function(){
     var that = this;
-    d3.select(window).on("resize" + Math.floor(Math.random() * 1000 * 1000),
+    this.responsive_width = window.innerWidth;;
+    d3.select(window).on("resize." + Math.floor(Math.random() * 1000 * 1000),
 			 function(){
+			     if (that.responsive_width == window.innerWidth)
+				 return;
+			     that.responsive_width = window.innerWidth;
+			     
+			     
 	that
 	.width(that.selection().node().getBoundingClientRect().width)
 	// .height(that.selection().node().getBoundingClientRect().height)
-	    .update_forces();
+				 .update_forces().tick();
     });
     return this;
 }
