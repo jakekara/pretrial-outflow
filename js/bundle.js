@@ -57,7 +57,7 @@ var draw = function (){
     // var width = window.innerWidth;
     // var height = window.innerHeight;
     
-    var p = new petri.dish()
+     p = new petri.dish()
 	.data(function(){
 	    var ret = [];
 	    for (var i = 0; i < 310; i++){
@@ -76,7 +76,7 @@ var draw = function (){
     
     p.responsive();
     
-    p.simulation()
+    p.simulation().velocityDecay(0.9);
 
     return p;
 };
@@ -92,10 +92,20 @@ var arrange_rand = function(){
 }
 
 
-
+var throttle = false;
 
 var arrange = function(){
 
+    if (throttle == true) return;
+
+    throttle = true;
+    
+    throttle = setTimeout(function(){
+	throttle = false;
+    }, 100);
+    
+    p.simulation().restart();
+    
     p.rearrange(function(n, i){
 	if(n.in == false){
 	    return [(window.innerWidth / 3) * 2, window.innerHeight / 2];
@@ -109,16 +119,21 @@ var arrange = function(){
 	}
 
     });
+
+    setTimeout(p.simulation().stop, 2000);
 };
 
 var color_out = function(out){
-    console.log("color_out");
+    p.simulation().restart();
+    console.log("color out " + out);
     p.simulation().nodes().forEach(function(n, i){
 	if (i < out)
 	    n.in_color = false;
 	else
 	    n.in_color = true;
     });
+
+    // p.simulation().stop();
 }
 
 var move_out = function(out){
