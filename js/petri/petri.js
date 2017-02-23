@@ -131,13 +131,11 @@ PETRI.dish.prototype.responsive = function(){
 			     if (that.responsive_width == window.innerWidth)
 				 return;
 			     that.responsive_width = window.innerWidth;
-			     
-			     
 			     that
 				 .width(that.selection().node()
 					.getBoundingClientRect().width)
-				 .height(that.selection().node()
-				 	 .getBoundingClientRect().height)
+				 // .height(that.selection().node()
+				 // 	 .getBoundingClientRect().height)
 				 .retina()
 				 .update_forces();
     });
