@@ -195,7 +195,7 @@ slides[1].callback(function(){
 
 slides[2].selection().html("").append("span").html("Those issued summonses and citations are represented by the yellow dots.");
 
-slides[3].selection().html("").append("span").html("The blue dots are the custodial arrests. There were 77,000 of those.");
+slides[3].selection().html("").append("span").html("The blue dots are the custodial arrests -- that is, police actually took the person arrested into custody. There were 77,000 of those.");
 
 slides[3].callback(function(){
     move_out(310-77);
@@ -309,7 +309,7 @@ slides[23].callback(function(){
 });
 
 slides[24].selection().html("").append("span")
-    .html("That left 3,593 held on bond all the way through disposition and sentencing.");
+    .html("That left 3,593 people held on bond all the way through disposition and sentencing.");
 
 
 slides[25].callback(function(){
