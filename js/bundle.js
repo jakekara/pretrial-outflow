@@ -179,6 +179,7 @@ var move_out = function(out){
 slides[0].selection().html("").append("span")
     .html("Police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
 firstblock.callback(function(){
+    p = draw();
     color_out(0);
     move_out(0);
     arrange_rand();
@@ -441,9 +442,10 @@ PETRI.dish.prototype.height = function(d){
 
 PETRI.dish.prototype.width = function(d){
     if (typeof(d) == "undefined") return this.geom().width;
-    this.retina();
+    // this.retina();
     this.__canvas.attr("width",d);
     this.__canvas.style("width",d + "px");
+    this.retina();
     return this;
 }
 
@@ -457,10 +459,13 @@ PETRI.dish.prototype.responsive = function(){
 			     that.responsive_width = window.innerWidth;
 			     
 			     
-	that
-	.width(that.selection().node().getBoundingClientRect().width)
-	// .height(that.selection().node().getBoundingClientRect().height)
-				 .update_forces().tick();
+			     that
+				 .width(that.selection().node()
+					.getBoundingClientRect().width)
+				 .height(that.selection().node()
+				 	 .getBoundingClientRect().height)
+				 .retina()
+				 .update_forces();
     });
     return this;
 }

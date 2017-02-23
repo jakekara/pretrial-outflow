@@ -116,9 +116,10 @@ PETRI.dish.prototype.height = function(d){
 
 PETRI.dish.prototype.width = function(d){
     if (typeof(d) == "undefined") return this.geom().width;
-    this.retina();
+    // this.retina();
     this.__canvas.attr("width",d);
     this.__canvas.style("width",d + "px");
+    this.retina();
     return this;
 }
 
@@ -132,10 +133,13 @@ PETRI.dish.prototype.responsive = function(){
 			     that.responsive_width = window.innerWidth;
 			     
 			     
-	that
-	.width(that.selection().node().getBoundingClientRect().width)
-	// .height(that.selection().node().getBoundingClientRect().height)
-				 .update_forces().tick();
+			     that
+				 .width(that.selection().node()
+					.getBoundingClientRect().width)
+				 .height(that.selection().node()
+				 	 .getBoundingClientRect().height)
+				 .retina()
+				 .update_forces();
     });
     return this;
 }
