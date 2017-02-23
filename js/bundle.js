@@ -549,7 +549,7 @@ PETRI.dish.prototype.simulation = function(){
 	    "collide",
 	    d3.forceCollide()
 		.strength(0.2)
-		.iterations(3)
+		.iterations(1)
 		.radius(function(n){
 		    var col_radius = that.radius(n) + 1;
 		    return col_radius;
@@ -671,7 +671,7 @@ PETRI.dish.prototype.draw_node = function(d){
     context.moveTo(d.x + radius, d.y);
     context.arc(d.x, d.y, radius, 0, 2 * Math.PI);
 
-    context.stroke();
+    // context.stroke();
     context.fill();
     
     
