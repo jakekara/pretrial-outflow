@@ -57,6 +57,15 @@ var container = function(selection){
     this.__graph = this.__selection.append("div")
 	.classed("scrolly-graph", true);
 
+    // var that = this;
+    // d3.select(window).on("resize")
+    // {
+    // 	this.__graph
+    // 	    .style("width", window.innerWidth)
+    // 	    .style("height", window.innerHeight);
+	
+    // }
+    
     this.blocks = [];
     
     return this;
@@ -167,7 +176,7 @@ var block = function(selection){
 
     var that = this;
     this.__callback = function(i){
-	console.log("block " + i + " active.");
+	// console.log("block " + i + " active.");
     }
 
 

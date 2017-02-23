@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
- d3 = require("d3");
+d3 = require("d3");
 const petri = require("./petri/petri.js").petri;
 const scrolly = require("./scrolly/scrolly.js");
 
@@ -8,6 +8,8 @@ var sr = new scrolly.root(d3.select("#container"));
 var container1 = sr.add_container();
 var firstblock = container1.add_block();
 firstblock.selection();
+
+
 
 var slides = [];
 
@@ -78,6 +80,12 @@ var draw = function (){
     
     p.simulation().velocityDecay(0.9);
 
+    d3.select(window).on("resize", function(){
+	p.graph().select("svg")
+	    .attr("width", window.innerWidth + "px")
+	    .attr("height", window.innerHeight + "px");
+    });
+    
     return p;
 };
 
@@ -104,7 +112,7 @@ var arrange = function(){
 	throttle = false;
     }, 100);
     
-    p.simulation().restart();
+    restart();
     
     p.rearrange(function(n, i){
 	if(n.in == false){
@@ -120,20 +128,36 @@ var arrange = function(){
 
     });
 
-    setTimeout(p.simulation().stop, 2000);
+    stop();
 };
 
-var color_out = function(out){
+var stop_throttle = false;
+var stop_timeout;
+var stop = function(){
+
+    clearTimeout(stop_timeout);
+    stop_timeout = setTimeout(p.simulation().stop, 1500);
+    
+}
+
+var restart = function()
+{
+    clearTimeout(stop_timeout);
     p.simulation().restart();
-    console.log("color out " + out);
+}
+
+var color_out = function(out){
+    restart();
+    
     p.simulation().nodes().forEach(function(n, i){
 	if (i < out)
 	    n.in_color = false;
 	else
 	    n.in_color = true;
     });
+    stop();
 
-    // p.simulation().stop();
+    
 }
 
 var move_out = function(out){
@@ -161,7 +185,7 @@ slides[1].callback(function(){
     color_out(310-77);
 });
 
-slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
+slides[1].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
 
 slides[3].selection().html("").append("span").html("The blue dots on the left are the custodial arrests. There were 77,000 of those.");
 
@@ -286,7 +310,12 @@ d3.select("#container").transition().duration(1000).style("opacity",1);
 // setTimeout(scroll_init,2 * 1000);
 // scroll_init();
 
-window.scrollTo(0,0);
+// window.scrollTo(0,0);
+d3.select("#container").style("visibility","hidden");
+setTimeout(function(){
+    window.scrollTo(0,0);
+    d3.select("#container").style("visibility","visible");
+}, 500);
 
 },{"./petri/petri.js":2,"./scrolly/scrolly.js":3,"d3":4}],2:[function(require,module,exports){
 const d3 = require("d3");
@@ -761,6 +790,15 @@ var container = function(selection){
     this.__graph = this.__selection.append("div")
 	.classed("scrolly-graph", true);
 
+    // var that = this;
+    // d3.select(window).on("resize")
+    // {
+    // 	this.__graph
+    // 	    .style("width", window.innerWidth)
+    // 	    .style("height", window.innerHeight);
+	
+    // }
+    
     this.blocks = [];
     
     return this;
@@ -871,7 +909,7 @@ var block = function(selection){
 
     var that = this;
     this.__callback = function(i){
-	console.log("block " + i + " active.");
+	// console.log("block " + i + " active.");
     }
 
 

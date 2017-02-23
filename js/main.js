@@ -1,4 +1,4 @@
- d3 = require("d3");
+d3 = require("d3");
 const petri = require("./petri/petri.js").petri;
 const scrolly = require("./scrolly/scrolly.js");
 
@@ -7,6 +7,8 @@ var sr = new scrolly.root(d3.select("#container"));
 var container1 = sr.add_container();
 var firstblock = container1.add_block();
 firstblock.selection();
+
+
 
 var slides = [];
 
@@ -77,6 +79,12 @@ var draw = function (){
     
     p.simulation().velocityDecay(0.9);
 
+    d3.select(window).on("resize", function(){
+	p.graph().select("svg")
+	    .attr("width", window.innerWidth + "px")
+	    .attr("height", window.innerHeight + "px");
+    });
+    
     return p;
 };
 
@@ -103,7 +111,7 @@ var arrange = function(){
 	throttle = false;
     }, 100);
     
-    p.simulation().restart();
+    restart();
     
     p.rearrange(function(n, i){
 	if(n.in == false){
@@ -119,20 +127,36 @@ var arrange = function(){
 
     });
 
-    setTimeout(p.simulation().stop, 2000);
+    stop();
 };
 
-var color_out = function(out){
+var stop_throttle = false;
+var stop_timeout;
+var stop = function(){
+
+    clearTimeout(stop_timeout);
+    stop_timeout = setTimeout(p.simulation().stop, 1500);
+    
+}
+
+var restart = function()
+{
+    clearTimeout(stop_timeout);
     p.simulation().restart();
-    console.log("color out " + out);
+}
+
+var color_out = function(out){
+    restart();
+    
     p.simulation().nodes().forEach(function(n, i){
 	if (i < out)
 	    n.in_color = false;
 	else
 	    n.in_color = true;
     });
+    stop();
 
-    // p.simulation().stop();
+    
 }
 
 var move_out = function(out){
@@ -160,7 +184,7 @@ slides[1].callback(function(){
     color_out(310-77);
 });
 
-slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
+slides[1].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
 
 slides[3].selection().html("").append("span").html("The blue dots on the left are the custodial arrests. There were 77,000 of those.");
 
@@ -285,4 +309,9 @@ d3.select("#container").transition().duration(1000).style("opacity",1);
 // setTimeout(scroll_init,2 * 1000);
 // scroll_init();
 
-window.scrollTo(0,0);
+// window.scrollTo(0,0);
+d3.select("#container").style("visibility","hidden");
+setTimeout(function(){
+    window.scrollTo(0,0);
+    d3.select("#container").style("visibility","visible");
+}, 500);
