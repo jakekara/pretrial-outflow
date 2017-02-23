@@ -210,7 +210,7 @@ slides[5].callback(function(){
     move_out(310-77+26);
 });
 
-slides[6].selection().html("").append("span").html("In another 19,000 cases, a financial bond was set and the defendant posted bond and was released.");
+slides[6].selection().html("").append("span").html("In another 19,000 cases, a financial bond was set, and the defendant posted bond and was released.");
 
 slides[6].callback(function(){
     color_out(310-77+26+18);
@@ -224,8 +224,11 @@ slides[7].callback(function(){
 });
 
 
+slides[8].selection().html("").append("span")
+    .html("Judicial Branch bail staff review cases and can make bail decisions when court isn't in session, on nights and weekends.");
+
 slides[9].selection().html("").append("span")
-    .html("Judicial Branch bail staff reviewed 16,000 of those cases and another 5,000 were released on a promise to appear.")
+    .html("Bail staff reviewed 16,000 cases and another 5,000 defendants were released on a promise to appear.");
 
 slides[9].callback(function(){
     color_out(310-77+26+18+5);
@@ -242,21 +245,21 @@ slides[11].callback(function(){
     color_out(310-77+26+18+5+1);
 })
 
-slides[12].selection().html("").append("span")
-    .html("That left 9,000 held on bail after bail staff review.");
+// slides[12].selection().html("").append("span")
+//     .html("That left 9,000 held on bail after bail staff review.");
 
 slides[12].callback(function(){
     move_out(310-77+26+18+5+1);
 })
 
+// slides[13].selection().html("").append("span")
+//     .html("Here's where the courts come in...");
+
 slides[13].selection().html("").append("span")
-    .html("Here's where the courts come in...");
+    .html("Courts make bail decisions when a defendant can't post bond by the time court is in session.");
 
 slides[14].selection().html("").append("span")
-    .html("Courts make bail decisions when a defendant can't post bond even after a bail staff review, or if the bail staff review happened during normal business hours when the court is in session.");
-
-slides[15].selection().html("").append("span")
-    .html("In court, cases are thrown out, too.");
+    .html("In court, cases are sometimes thrown out, too.");
 
 slides[15].selection().html("").append("span")
     .html("After the first court appearance, 15,000 defendants were still held on bond.");
