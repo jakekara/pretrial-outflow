@@ -225,10 +225,10 @@ slides[7].callback(function(){
 
 
 slides[8].selection().html("").append("span")
-    .html("Judicial Branch bail staff review cases and can make bail decisions when court isn't in session, on nights and weekends.");
+    .html("If defendants can't post police department bond and court isn't in session, Judicial Branch bail staff can modify bail decisions made by police.");
 
 slides[9].selection().html("").append("span")
-    .html("Bail staff reviewed 16,000 cases and another 5,000 defendants were released on a promise to appear.");
+    .html("Bail staff reviewed 16,000 such cases and afterwards, 5,000 more defendants were released on a promise to appear.");
 
 slides[9].callback(function(){
     color_out(310-77+26+18+5);
@@ -259,7 +259,7 @@ slides[13].selection().html("").append("span")
     .html("Courts make bail decisions when a defendant can't post bond by the time court is in session.");
 
 slides[14].selection().html("").append("span")
-    .html("In court, cases are sometimes thrown out, too.");
+    .html("In court, some cases are thrown out, too.");
 
 slides[15].selection().html("").append("span")
     .html("After the first court appearance, 15,000 defendants were still held on bond.");
