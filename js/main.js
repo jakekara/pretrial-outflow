@@ -176,7 +176,7 @@ var move_out = function(out){
 }
 
 slides[0].selection().html("").append("span")
-    .html("Police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
+    .html("Police in Connecticut charged people with offenses 310,000 times. Each dot represents 1,000 cases.");
 firstblock.callback(function(){
     p.simulation().stop();
     p = null;
@@ -186,21 +186,19 @@ firstblock.callback(function(){
     arrange_rand();
 });
 
-slides[1].selection().html("").append("span").html("Most of the time an officer issued a citation or summons, which don't involve detention.");
+slides[1].selection().html("").append("span").html("Most of the time an officer issued a summons or citation, which doesn't involve a possible detention.");
 
 slides[1].callback(function(){
     color_out(310-77);
 });
 
-slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
+slides[2].selection().html("").append("span").html("Those issued summonses and citations are represented by the yellow dots.");
 
 slides[3].selection().html("").append("span").html("The blue dots are the custodial arrests. There were 77,000 of those.");
 
 slides[3].callback(function(){
     move_out(310-77);
 });
-
-
 
 slides[4].selection().html("").append("span").html("Out of those custodial arrests, defendants were let go on  promises to appear in court in 26,000 cases.");
 
@@ -227,7 +225,7 @@ slides[7].callback(function(){
 
 
 slides[9].selection().html("").append("span")
-    .html("Judicial Branch bail staff reviewed 16,000 of those cases and another 5,000 were let go on a promise to appear.")
+    .html("Judicial Branch bail staff reviewed 16,000 of those cases and another 5,000 were released on a promise to appear.")
 
 slides[9].callback(function(){
     color_out(310-77+26+18+5);
@@ -252,7 +250,7 @@ slides[12].callback(function(){
 })
 
 slides[13].selection().html("").append("span")
-    .html("Here's when the courts come in...");
+    .html("Here's where the courts come in...");
 
 slides[14].selection().html("").append("span")
     .html("Courts make bail decisions when a defendant can't post bond even after a bail staff review, or if the bail staff review happened during normal business hours when the court is in session.");
@@ -272,7 +270,7 @@ slides[16].callback(function(){
 });
 
 slides[17].selection().html("").append("span")
-    .html("But that's not the end.");
+    .html("But that's not the end of the line.");
 
 slides[18].selection().html("").append("span")
     .html("Defendants held on bond after court go into a state correctional facility.");
@@ -280,34 +278,38 @@ slides[18].selection().html("").append("span")
 slides[19].selection().html("").append("span")
     .html("On the inside, cases are reviewed again.");
 
-slides[20].selection().html("").append("span")
-    .html("After 10,000 of these reviews, 1,700 defendants went into a diversionary program.");
-
 slides[19].callback(function(){
     color_out(310-15 + 2);
 });
+
+slides[20].selection().html("").append("span")
+    .html("After 10,000 of these reviews, 1,700 defendants went into a diversionary program.");
+
 
 slides[20].callback(function(){
     move_out(310-15 + 2);
 });
 
-slides[22].selection().html("").append("span")
-    .html("Another 4,800 were released on bond.");
 
 slides[21].callback(function(){
     color_out(310-15 + 5);
 });
 
+slides[22].selection().html("").append("span")
+    .html("Another 4,800 were released on bond.");
+
+
 slides[22].callback(function(){
     move_out(310 - 15 + 5);
 });
 
-slides[24].selection().html("").append("span")
-    .html("That left 3,593 held on bond all the way through disposition and/or sentencing.");
-
-slides[24].callback(function(){
+slides[23].callback(function(){
     color_out(310 - 4);
 });
+
+slides[24].selection().html("").append("span")
+    .html("That left 3,593 held on bond all the way through disposition and sentencing.");
+
 
 slides[25].callback(function(){
     move_out(310 - 4);
