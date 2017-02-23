@@ -229,7 +229,7 @@ slides[8].selection().html("").append("span")
     .html("If defendants can't post police department bond and court isn't in session, Judicial Branch bail staff can modify bail decisions made by police.");
 
 slides[9].selection().html("").append("span")
-    .html("Bail staff reviewed 16,000 such cases and afterwards, 5,000 more defendants were released on a promise to appear.");
+    .html("Bail staff reviewed 16,000 such cases and afterward, 5,000 more defendants were released on a promise to appear.");
 
 slides[9].callback(function(){
     color_out(310-77+26+18+5);
@@ -257,7 +257,7 @@ slides[12].callback(function(){
 //     .html("Here's where the courts come in...");
 
 slides[13].selection().html("").append("span")
-    .html("Courts make bail decisions when a defendant can't post bond by the time court is in session.");
+    .html("Courts make bail decisions when defendants can't post bond by the time court is in session.");
 
 slides[14].selection().html("").append("span")
     .html("In court, some cases are thrown out, too.");
@@ -296,7 +296,7 @@ slides[20].callback(function(){
 
 
 slides[21].callback(function(){
-    color_out(310-15 + 5);
+    color_out(310 - 15 + 2 + 5);
 });
 
 slides[22].selection().html("").append("span")
@@ -304,19 +304,19 @@ slides[22].selection().html("").append("span")
 
 
 slides[22].callback(function(){
-    move_out(310 - 15 + 5);
+    move_out(310 - 15 + 2 + 5);
 });
 
 slides[23].callback(function(){
-    color_out(310 - 4);
+    // color_out(310 - 4);
 });
 
 slides[24].selection().html("").append("span")
-    .html("That left 3,593 people held on bond all the way through disposition and sentencing.");
+    .html("That left 8,652 people held on bond all the way through disposition and sentencing.");
 
 
-slides[25].callback(function(){
-    move_out(310 - 4);
+slides[24].callback(function(){
+    // move_out(310 - 4);
 });
 
 d3.select("#container").transition().duration(1000).style("opacity",1);
