@@ -264,11 +264,11 @@ slides[14].selection().html("").append("span")
 slides[15].selection().html("").append("span")
     .html("After the first court appearance, 15,000 defendants were still held on bond.");
 
-slides[15].callback(function(){
+slides[14].callback(function(){
     color_out(310 - 15);
 });
 
-slides[16].callback(function(){
+slides[15].callback(function(){
     move_out(310 - 15);
 });
 
