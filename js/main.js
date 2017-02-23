@@ -192,9 +192,9 @@ slides[1].callback(function(){
     color_out(310-77);
 });
 
-slides[1].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
+slides[2].selection().html("").append("span").html("Those issued a citation or summons are the dots that just turned yellow.");
 
-slides[3].selection().html("").append("span").html("The blue dots on the left are the custodial arrests. There were 77,000 of those.");
+slides[3].selection().html("").append("span").html("The blue dots are the custodial arrests. There were 77,000 of those.");
 
 slides[3].callback(function(){
     move_out(310-77);
@@ -212,14 +212,14 @@ slides[5].callback(function(){
     move_out(310-77+26);
 });
 
-slides[6].selection().html("").append("span").html("In another 19,000 cases, a financial bond was set and the defendant posted bond.");
+slides[6].selection().html("").append("span").html("In another 19,000 cases, a financial bond was set and the defendant posted bond and was released.");
 
 slides[6].callback(function(){
     color_out(310-77+26+18);
 })
 
 slides[7].selection().html("").append("span")
-    .html("That left 33,000 held on bond set by police departments");
+    .html("That left 33,000 held on bond set by police departments.");
 
 slides[7].callback(function(){
     move_out(310-77+26+18);
@@ -252,7 +252,7 @@ slides[12].callback(function(){
 })
 
 slides[13].selection().html("").append("span")
-    .html("Now it's time for court...");
+    .html("Here's when the courts come in...");
 
 slides[14].selection().html("").append("span")
     .html("Courts make bail decisions when a defendant can't post bond even after a bail staff review, or if the bail staff review happened during normal business hours when the court is in session.");
@@ -278,7 +278,7 @@ slides[18].selection().html("").append("span")
     .html("Defendants held on bond after court go into a state correctional facility.");
 
 slides[19].selection().html("").append("span")
-    .html("On the inside, their cases are reviewed again.");
+    .html("On the inside, cases are reviewed again.");
 
 slides[20].selection().html("").append("span")
     .html("After 10,000 of these reviews, 1,700 defendants went into a diversionary program.");
