@@ -179,6 +179,8 @@ var move_out = function(out){
 slides[0].selection().html("").append("span")
     .html("Police in Connecticut charged people with offenses 310,000 times. Each blue dot represents 1,000 cases.");
 firstblock.callback(function(){
+    p.simulation().stop();
+    p = null;
     p = draw();
     color_out(0);
     move_out(0);
